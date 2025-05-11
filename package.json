@@ -1,0 +1,16 @@
+{
+  "name": "react-ai-chatbot-app",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "install-all": "npm install --prefix frontend && npm install --prefix backend",
+    "start": "npm run install-all && concurrently \"npm start --prefix frontend\" \"npm start --prefix backend\"",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+   "description": "",
+  "devDependencies": {
+    "concurrently": "^9.1.2"
+  }
+}
