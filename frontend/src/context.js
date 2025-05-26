@@ -35,7 +35,8 @@ const AppProvider = ({ children }) => {
 
     try {
       setProcessing(true);
-      const res = await fetch(`${process.env.REACT_APP_BACKEND_URL}:5500`, {
+    
+      const res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/`, {
         method: "POST",
         headers: {
           "content-type": "application/json",
@@ -44,32 +45,37 @@ const AppProvider = ({ children }) => {
           messages: tempMessages.slice(-8),
         }),
       });
+    
       setProcessing(false);
-
+    
+      if (!res.ok) {
+        const errorText = await res.text(); // Fallback if JSON is not returned
+        console.error("Non-JSON error response:", errorText);
+        throw new Error("Server error or invalid JSON");
+      }
+    
       const data = await res.json();
-      console.log(data);
-
-      const ans = data.data;
-      console.log(ans);
-
+      const ans = data?.data;
+    
       setMessages((prev) => [
         ...prev,
         {
           from: "ai",
-          text: ans?.trim(),
+          text: ans?.trim() || "No response from server.",
         },
       ]);
     } catch (err) {
-      console.log(err)
-      const error = "Error Proceesing this message. Please try in sometime";
+      console.error("Error:", err.message);
+    
       setMessages((prev) => [
         ...prev,
         {
           from: "ai",
-          text: error,
+          text: "Error processing your message. Please try again later.",
         },
       ]);
     }
+    
 
     setTimeout(() =>
       lastMsg.current.scrollIntoView({
