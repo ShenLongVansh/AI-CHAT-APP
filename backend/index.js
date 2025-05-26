@@ -14,7 +14,6 @@ app.use(express.json());
 
 // Initialize Groq client
 const groq = new Groq({ apiKey: process.env.GROQ_API_KEY});
-console.log(groq)
 
 
 app.get("/", async (req, res) => {
