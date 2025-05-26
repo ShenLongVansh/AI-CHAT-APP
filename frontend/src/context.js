@@ -35,7 +35,7 @@ const AppProvider = ({ children }) => {
 
     try {
       setProcessing(true);
-      const res = await fetch(`http://localhost:5500`, {
+      const res = await fetch(`${process.env.REACT_APP_BACKEND_URL}:5500`, {
         method: "POST",
         headers: {
           "content-type": "application/json",
