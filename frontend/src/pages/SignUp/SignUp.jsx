@@ -117,6 +117,7 @@ const SignUp = () => {
             />
             <InputControl
               label="Password"
+              type="password"
               placeholder="Enter password"
               value={values.pass}
               onChange={(event) =>
