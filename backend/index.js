@@ -1,19 +1,22 @@
 const express = require("express");
 const cors = require("cors");
-const dotenv = require("dotenv");
 const Groq = require("groq-sdk");
 
+const dotenv = require("dotenv");
 dotenv.config();
 
 // Initialize Express app
 const app = express();
-const port = 5500;
+const port = process.env.PORT || 5500;
 // Middleware
-app.use(cors());
+app.use(cors({
+  origin: process.env.REACT_APP_FRONTEND_URL || "https://ai-chat-app-major-git-main-shenlongvanshs-projects.vercel.app/"  // replace '*' with your frontend URL
+}));
 app.use(express.json());
 
 // Initialize Groq client
 const groq = new Groq({ apiKey: process.env.GROQ_API_KEY});
+// console.log(groq)
 
 
 app.get("/", async (req, res) => {
