@@ -10,7 +10,7 @@ const app = express();
 const port = process.env.PORT || 5500;
 // Middleware
 app.use(cors({
-  origin: process.env.REACT_APP_FRONTEND_URL || "https://ai-chat-app-major-git-main-shenlongvanshs-projects.vercel.app/"  // replace '*' with your frontend URL
+  origin: process.env.REACT_APP_FRONTEND_URL || "https://ai-chat-app-major-git-main-shenlongvanshs-projects.vercel.app"  // replace '*' with your frontend URL
 }));
 app.use(express.json());
 
